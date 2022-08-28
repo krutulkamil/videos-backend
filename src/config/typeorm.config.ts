@@ -1,13 +1,13 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
-import { ConfigService } from "@nestjs/config";
+import { DATABASE, HOST, PASSWORD, PORT, USERNAME } from "./environment.config";
 
-export const getTypeOrmConfig = async (configService: ConfigService): Promise<TypeOrmModuleOptions> => ({
+export const getTypeOrmConfig = (): TypeOrmModuleOptions => ({
     type: 'postgres',
-    host: configService.get<string>('HOST'),
-    port: configService.get<number>('PORT'),
-    database: configService.get<string>('DATABASE'),
-    username: configService.get<string>('USERNAME'),
-    password: configService.get<string>('PASSWORD'),
+    host: HOST,
+    port: +PORT,
+    database: DATABASE,
+    username: USERNAME,
+    password: PASSWORD,
     autoLoadEntities: true,
     synchronize: true
 });
