@@ -41,7 +41,7 @@ export class VideoController {
   }
 
   @HttpCode(200)
-  @Post(':id')
+  @Post()
   @Auth()
   async createVideo(@CurrentUser('id') id: number) {
     return this.videoService.create(+id);
