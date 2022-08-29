@@ -15,7 +15,6 @@ export class UserController {
     };
 
     @Get("by-id/:id")
-    @Auth()
     async getUser(@Param('id') id: string) {
         return this.userService.byId(+id);
     };
@@ -30,7 +29,7 @@ export class UserController {
 
     @UsePipes(new ValidationPipe())
     @HttpCode(200)
-    @Patch('subscriber/:channelId')
+    @Patch('subscribe/:channelId')
     @Auth()
     async subscribeToChannel(@CurrentUser('id') id: number, @Param('channelId') channelId: string) {
         return this.userService.subscribe(+id, +channelId);
